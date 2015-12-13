@@ -1,0 +1,11 @@
+--- 
+- name: Update apt
+  apt: update_cache=yes
+
+- name: Uninstall Apache2
+  apt: name=apache2 purge=yes force=yes state=absent
+
+- name: Install full nginx
+  apt: name={{ item }} state=latest
+  with_items:
+    - nginx-full
