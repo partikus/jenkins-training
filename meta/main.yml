@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Michał Szczur
+  description: Jenkins installation playbook
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  categories:
+  - development
+  - system
+  - web
+  
+  dependencies: 
+    - { role: './../roles/tools' } 
+    - { role: './../roles/nginx' } 
+    - { role: './../roles/jenkins' } 

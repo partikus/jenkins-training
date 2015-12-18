@@ -17,3 +17,5 @@
     - graphviz
     - imagemagick
     - libmagickwand-dev
+    - maven
+    - ant

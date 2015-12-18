@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name ci.{{parameters.project_name }}.dev;
+    server_name ci.{{ project_name }}.dev;
 
     location / {
         proxy_pass              http://localhost:8080;
