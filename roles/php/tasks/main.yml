@@ -1,0 +1,19 @@
+---
+- name: Install python-pycurl
+  apt: pkg=python-pycurl state=latest
+
+- name: Add php repository
+  apt_repository: repo='ppa:ondrej/php' state=present
+
+- name: Install PHP 
+  apt: name="php{{ php_version }}" state=latest force=yes  update_cache=yes
+
+- name: Intsall PHP packages
+  apt: name={{ item }} state=latest force=yes
+  with_items:
+    - php{{ php_version }}-cli
+    - php{{ php_version }}-gd
+    - php{{ php_version }}-mysql
+    - php{{ php_version }}-curl
+    - php{{ php_version }}-intl
+    - php{{ php_version }}-mcrypt

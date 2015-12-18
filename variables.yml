@@ -1,3 +1,4 @@
 ---
 # Project
 project_name: "jenkins"
+php_version: 7.0
