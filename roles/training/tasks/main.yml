@@ -1,0 +1,17 @@
+---
+- name: set display for jenkins to xvfb
+  lineinfile: dest="/etc/default/jenkins" line="DISPLAY=:99.0"
+
+- name: List installed jobs
+  shell: java -jar /usr/share/jenkins/jenkins-cli.jar -s http://localhost:8080 list-jobs
+  register: created_jobs
+
+- name: Copy jenkins job configuration file
+  template: src="{{ item }}.xml" dest="/tmp/{{ item }}.xml"
+  with_items: jenkins_jobs
+
+- name: Import jenkins jobs
+  shell: java -jar /usr/share/jenkins/jenkins-cli.jar -s http://localhost:8080 create-job {{ item }}  < /tmp/{{ item }}.xml
+  when: created_jobs.changed and created_jobs.stdout.find('{{ item }}') == -1
+  with_items: jenkins_jobs
+  ignore_errors: yes

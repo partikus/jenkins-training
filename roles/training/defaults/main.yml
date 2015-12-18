@@ -1,0 +1,6 @@
+---
+jenkins_jobs:
+ - spring-boot-acceptance-tests
+ - spring-boot-run-app
+ - spring-boot-unit-tests
+ 
