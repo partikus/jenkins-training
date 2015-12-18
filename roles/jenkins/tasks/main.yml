@@ -2,15 +2,6 @@
 - name: Update apt
   apt: update_cache=yes
 
-- name: Install Java OpenJDK
-  apt: name={{ item }} state=latest force=yes
-  with_items:
-    - openjdk-7-jdk
-    - ant
-
-- name: Configure JAVA_HOME env
-  lineinfile: dest="/etc/environment" line="JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/"
-
 - name: Add apt repository key
   apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
 
