@@ -2,6 +2,7 @@
 - name: Prepare basic env for php apps on all nodes
   hosts: all
   remote_user: vagrant
+  connection: local
   sudo: yes
   vars_files:
     - variables.yml
