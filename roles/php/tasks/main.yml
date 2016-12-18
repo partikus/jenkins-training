@@ -8,7 +8,7 @@
 - name: Install PHP 
   apt: name="php{{ php_version }}" state=latest force=yes  update_cache=yes
 
-- name: Intsall PHP packages
+- name: Install PHP packages
   apt: name={{ item }} state=latest force=yes
   with_items:
     - php{{ php_version }}-cli
@@ -17,3 +17,19 @@
     - php{{ php_version }}-curl
     - php{{ php_version }}-intl
     - php{{ php_version }}-mcrypt
+    - php{{ php_version }}-xml
+    - php{{ php_version }}-pdo
+    - php{{ php_version }}-sqlite3
+
+- name: Download composer installer
+  get_url:
+    url: https://github.com/composer/composer/releases/download/1.2.4/composer.phar
+    dest: /usr/local/bin/composer
+    mode: 0755
+
+- name: Install symfony installer
+  get_url: 
+    url: http://symfony.com/installer
+    dest: /usr/local/bin/symfony
+    mode: 0755
+    validate_certs: no

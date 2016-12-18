@@ -1,7 +1,0 @@
----
-- name: Install symfony installer
-  get_url: 
-    url: http://symfony.com/installer
-    dest: /usr/local/bin/symfony
-    mode: 0755
-    validate_certs: no
