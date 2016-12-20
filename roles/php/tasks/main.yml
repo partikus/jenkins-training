@@ -33,3 +33,9 @@
     dest: /usr/local/bin/symfony
     mode: 0755
     validate_certs: no
+
+- name: Enable PHP Sqlite ext
+  lineinfile:
+    dest: "/etc/php/{{ php_version }}/cli/php.ini"
+    regexp: 'php_pdo_sqlite.dll'
+    line: 'extension=php_pdo_sqlite.dll'
