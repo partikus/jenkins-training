@@ -4,7 +4,10 @@
 - name: Download selenium
   connection: local
   sudo: False
-  get_url: url=http://selenium-release.storage.googleapis.com/{{selenium_version}}/{{selenium_file}} dest={{cur_dir}}/{{selenium_file}} force=no
+  get_url: 
+    url=http://selenium-release.storage.googleapis.com/{{selenium_version}}/{{selenium_file}} 
+    dest={{cur_dir}}/{{selenium_file}} 
+    force=no
 
 - name: Copy selenium
   copy: src={{selenium_file}} dest=/usr/local/bin/{{selenium_file}} owner=root group=root mode=644
@@ -19,6 +22,12 @@
   apt: name={{item}}
   with_items:
     - firefox
+
+- name: Install geckodriver
+  unarchive:
+    src: "https://github.com/mozilla/geckodriver/releases/download/{{ gecko_version }}/geckodriver-{{ gecko_version }}-linux64.tar.gz"
+    dest: /usr/local/bin
+    remote_src: yes
 
 - name: start selenium
   service: name=selenium state=started enabled=yes

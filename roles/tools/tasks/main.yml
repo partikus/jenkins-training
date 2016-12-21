@@ -12,11 +12,9 @@
     - mc
     - acl
     - git
-    - subversion
-    - git-svn
     - libxml2-utils
     - graphviz
     - imagemagick
     - libmagickwand-dev
-    - maven
-    - ant
+    - htop
+    - fish

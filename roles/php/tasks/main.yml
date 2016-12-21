@@ -20,6 +20,7 @@
     - php{{ php_version }}-xml
     - php{{ php_version }}-pdo
     - php{{ php_version }}-sqlite3
+    - php{{ php_version }}-zip
 
 - name: Download composer installer
   get_url:
@@ -35,7 +36,28 @@
     validate_certs: no
 
 - name: Enable PHP Sqlite ext
-  lineinfile:
-    dest: "/etc/php/{{ php_version }}/cli/php.ini"
-    regexp: 'php_pdo_sqlite.dll'
-    line: 'extension=php_pdo_sqlite.dll'
+  shell: phpenmod -v ALL {{ item }}
+  with_items:
+    - curl
+    - dom
+    - exif
+    - fileinfo
+    - gettext
+    - iconv
+    - intl
+    - json
+    - mcrypt
+    - opcache
+    - pdo
+    - pdo_mysql
+    - pdo_sqlite
+    - phar
+    - posix
+    - readline
+    - simplexml
+    - sqlite3
+    - tokenizer
+    - xml
+    - xmlreader
+    - xmlwriter
+    - xsl
