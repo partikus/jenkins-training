@@ -5,6 +5,9 @@
   become: yes
   vars_files:
     - variables.yml
+  handlers:
+    - name: restart selenium
+      command: "service selenium stop && sleep 2 && service selenium start"
   roles:
     - tools
     - php

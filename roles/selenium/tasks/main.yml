@@ -11,9 +11,11 @@
 
 - name: Copy selenium
   copy: src={{selenium_file}} dest=/usr/local/bin/{{selenium_file}} owner=root group=root mode=644
+  notify: "restart selenium"
 
 - name: Install init script
   template: src=selenium.j2 dest=/etc/init.d/selenium owner=root group=root mode=755
+  notify: "restart selenium"
 
 - name: Link installation
   shell: update-rc.d selenium defaults
@@ -28,9 +30,4 @@
     src: "https://github.com/mozilla/geckodriver/releases/download/{{ gecko_version }}/geckodriver-{{ gecko_version }}-linux64.tar.gz"
     dest: /usr/local/bin
     remote_src: yes
-
-- name: stop selenium
-  service: name=selenium state=stop enabled=yes
-
-- name: start selenium
-  service: name=selenium state=start enabled=yes
+  notify: "restart selenium"
