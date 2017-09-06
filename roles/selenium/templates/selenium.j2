@@ -8,12 +8,12 @@ SELENIUM_DIR=/usr/local/bin/
 SELENIUM_RUN_DIR=/var/run/
 PID_FILE="$SELENIUM_RUN_DIR/selenium.pid"
 JAR_FILE="$SELENIUM_DIR/{{selenium_file}}"
-LOG_FILE="$SELENIUM_RUN_DIR/selenium.log"
+LOG_FILE="/var/log/selenium.log"
 
 MAX_MEMORY="-Xmx500m"
 STACK_SIZE="-Xss1024k"
 
-DAEMON_OPTS=" -client $MAX_MEMORY $STACK_SIZE -jar $JAR_FILE -log $LOG_FILE"
+DAEMON_OPTS=" -client $MAX_MEMORY $STACK_SIZE -jar $JAR_FILE -log $LOG_FILE -enablePassThrough false"
 
 NAME=selenium
 

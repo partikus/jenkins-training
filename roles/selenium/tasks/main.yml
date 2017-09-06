@@ -29,5 +29,8 @@
     dest: /usr/local/bin
     remote_src: yes
 
+- name: stop selenium
+  service: name=selenium state=stop enabled=yes
+
 - name: start selenium
-  service: name=selenium state=started enabled=yes
+  service: name=selenium state=start enabled=yes
